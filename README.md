@@ -7,7 +7,8 @@ Game Name: Blackout Escape
 - Turns: A Resource that ticks down by 1 every 30 seconds
 - Use turns to search locations, ignite lamps and solve puzzles
 - Inventory system to store equipment
-- Solve the puzzles with items you gather 
+- Solve the puzzles with items you gather
+- Skill Checks required to progress and cost turns to do
 - Move from room to room to progress
 - Loss Condition: Running Out of Turns. Win Condition: Escape
 
