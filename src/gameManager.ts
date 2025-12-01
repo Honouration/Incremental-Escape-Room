@@ -42,7 +42,7 @@ export class GameManager {
       return { success: false, message: "Action not found" };
     }
 
-    const canExecute = this.actionHandler.canExecuteAction(action, currentRoom);
+    const canExecute = this.actionHandler.canExecuteAction(action, currentRoom, false);
     if (!canExecute.can) {
       return { success: false, message: canExecute.reason || "Cannot execute action" };
     }

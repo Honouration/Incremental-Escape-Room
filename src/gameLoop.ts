@@ -44,14 +44,14 @@ export class GameLoop {
 
   private async promptUserAction(): Promise<void> {
     return new Promise((resolve) => {
-      this.rl.question("Enter command (0-9, 'inventory', 'status', 'help', 'quit'): ", (input) => {
-        this.handleInput(input.trim().toLowerCase());
+      this.rl.question("Enter command (0-9, 'inventory', 'status', 'help', 'quit'): ", async (input) => {
+        await this.handleInput(input.trim().toLowerCase());
         resolve();
       });
     });
   }
 
-  private handleInput(input: string): void {
+  private async handleInput(input: string): Promise<void> {
     if (input === "quit") {
       this.running = false;
       console.log("👋 Thanks for playing!\n");
@@ -60,6 +60,7 @@ export class GameLoop {
 
     if (input === "help") {
       GameUI.displayHelp();
+      await this.promptUserAction();
       return;
     }
 
@@ -68,6 +69,7 @@ export class GameLoop {
       console.log(
         `\n📦 Inventory: ${inventory.length > 0 ? inventory.join(", ") : "Empty"}\n`
       );
+      await this.promptUserAction();
       return;
     }
 
@@ -78,6 +80,7 @@ export class GameLoop {
       console.log(`  Turns: ${state.totalTurns}`);
       console.log(`  Items: ${state.inventory.length}`);
       console.log(`  Secrets: ${state.discoveredSecrets.size}\n`);
+      await this.promptUserAction();
       return;
     }
 

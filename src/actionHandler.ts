@@ -4,7 +4,7 @@ import { Room, Action } from "./rooms/roomTypes";
 export class ActionHandler {
   constructor(private engine: GameEngine) {}
 
-  canExecuteAction(action: Action, room: Room): { can: boolean; reason?: string } {
+  canExecuteAction(action: Action, room: Room, checkOnly: boolean = true): { can: boolean; reason?: string } {
     const state = this.engine.getState();
 
     // Check if already completed
@@ -12,8 +12,8 @@ export class ActionHandler {
       return { can: false, reason: "Action already completed" };
     }
 
-    // Check turn cost
-    if (!this.engine.spendTurns(action.turnCost)) {
+    // Check turn cost (but don't spend yet if just checking)
+    if (state.totalTurns < action.turnCost) {
       return { can: false, reason: "Not enough turns remaining" };
     }
 
@@ -26,10 +26,16 @@ export class ActionHandler {
       }
     }
 
+    // Only spend turns if actually executing (not just checking)
+    if (!checkOnly) {
+      this.engine.spendTurns(action.turnCost);
+    }
+
     return { can: true };
   }
 
   executeAction(action: Action): void {
+    // Turns already spent in canExecuteAction when checkOnly=false
     this.engine.markActionComplete(action.id);
 
     // Add rewards

@@ -1,0 +1,1 @@
+{"version":3,"file":"gameLoop.d.ts","sourceRoot":"","sources":["../src/gameLoop.ts"],"names":[],"mappings":"AAIA,qBAAa,QAAQ;IACnB,OAAO,CAAC,OAAO,CAAc;IAC7B,OAAO,CAAC,EAAE,CAAqB;IAC/B,OAAO,CAAC,OAAO,CAAiB;;IAU1B,KAAK,IAAI,OAAO,CAAC,IAAI,CAAC;IAgB5B,OAAO,CAAC,mBAAmB;YAWb,gBAAgB;YAShB,WAAW;IA2DzB,OAAO,CAAC,KAAK;CAGd"}
